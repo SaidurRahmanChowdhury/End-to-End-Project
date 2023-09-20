@@ -24,8 +24,22 @@ class DataTransformation:
     def get_data_transformer_object(self):
         
         try:
-            pass
-        
+            numerical_columns=['writing_score','reading_score']
+            categorical_columns=['gender','race_ethnicity','parental_level_of_education','lunch','test_preparation_course']
+            
+            numerical_pipeline=Pipeline(steps=[
+                ('Imputer',SimpleImputer(strategy='median')),
+                ('Scalar',StandardScaler())
+            ])
+            
+            categorical_pipeline=Pipeline(steps=[
+                ('Imputer',SimpleImputer(strategy='most_frequent')),
+                ('Scalar',StandardScaler(with_mean=False))
+            ])
+            
+            logging.info(f"Categorical Columns:{categorical_columns}")
+            logging.info(f"Numerical Columns:{numerical_columns}")
+
         except Exception as e:
             raise CustomException(e,sys)
         
