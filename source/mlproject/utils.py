@@ -46,5 +46,6 @@ def save_object(file_path,object):
         with open(file_path,'wb') as file_object:
             pickle.dump(object,file_object)
             
+            
     except Exception as e:
         raise CustomException(e,sys)
